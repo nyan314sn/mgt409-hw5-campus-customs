@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resolved Board</title>
+<style>
+  :root {
+    --bg: #0b0a0d; --panel: #15131a; --panel-2: #1d1a24; --line: #2c2834;
+    --text: #f3eef6; --muted: #b3a9bd; --pink: #ff3d9a; --pink-soft: #ff8cc4;
+    --warn: #ffb547; --ok: #5fe3a1; --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); }
+  body { font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; padding: 32px 16px 64px; }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  .eyebrow { color: var(--pink); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; }
+  h1 { font-size: clamp(26px, 4vw, 36px); margin: 6px 0 8px; line-height: 1.2; }
+  .sub { color: var(--muted); margin: 0 0 6px; }
+  nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 28px; }
+  nav a { color: var(--text); text-decoration: none; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px; font-weight: 600; font-size: 14px; }
+  nav a:hover, nav a:focus-visible { border-color: var(--pink); color: var(--pink-soft); outline: none; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .chip { background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 13px; color: var(--muted); }
+  .chip b { color: var(--text); font-weight: 600; }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 28px; overflow: hidden; scroll-margin-top: 16px; }
+  section header { padding: 18px 22px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline; }
+  section h2 { margin: 0; font-size: 22px; }
+  section h2 span { color: var(--pink); font-family: ui-monospace, "Cascadia Code", Consolas, monospace; margin-right: 8px; }
+  .stamp { border: 2px solid var(--ok); color: var(--ok); border-radius: 6px; padding: 0 8px; font-size: 12px; font-weight: 800; letter-spacing: .12em; transform: rotate(-3deg); display: inline-block; }
+  .facts { padding: 14px 22px 4px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 6px 24px; }
+  .facts p { margin: 0 0 10px; }
+  .facts b { color: var(--pink-soft); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; display: block; }
+  .cash-down { color: var(--warn); font-weight: 700; }
+  .cash-same { color: var(--muted); font-weight: 700; }
+  figure { margin: 0; padding: 8px 22px 22px; }
+  figure a { display: block; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  figure a:hover, figure a:focus-visible { border-color: var(--pink); outline: none; }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { color: var(--muted); font-size: 13px; margin-top: 8px; }
+  code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .9em; background: var(--panel-2); padding: 1px 6px; border-radius: 5px; color: var(--pink-soft); }
+  footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Campus Customs · Back-office desk</div>
+  <h1>The React board after each resolved ticket</h1>
+  <p class="sub">Full run on 2026-11-05 (Problem 9). The working database was reset, then tickets 101, 102 and 103 were run one at a time on the board with gpt-6-luna. Each screenshot is the live board at <code>http://localhost:5173/?ticket=&lt;id&gt;</code>, taken after all three runs were done. Click a screenshot to open it full size.</p>
+  <div class="chips">
+    <span class="chip">Start <b>$3,400.00</b></span>
+    <span class="chip">End <b>$160.00</b></span>
+    <span class="chip">Tickets <b>3/3 resolved</b></span>
+    <span class="chip">Human approvals <b>2</b> (invoice 501, $840 · rent, $2,400)</span>
+  </div>
+  <nav aria-label="Tickets">
+    <a href="#t101">CC-101 · Bulldog tee</a>
+    <a href="#t102">CC-102 · Rent due</a>
+    <a href="#t103">CC-103 · Bulk hoodie discount</a>
+  </nav>
+
+  <section id="t101" aria-labelledby="h101">
+    <header><h2 id="h101"><span>CC-101</span>Bulldog tee</h2><span class="stamp">RESOLVED</span></header>
+    <div class="facts">
+      <p><b>Agents</b>The Boss called Inventory and Accounting together, then Customer Service. Facilities was not called.</p>
+      <p><b>Outcome</b>Size S is out of stock, with M, L and XL available. The reply was drafted with no promised date.</p>
+      <p><b>Cash</b><span class="cash-down">−$840.00</span>: invoice 501 to Bulldog Print Co was approved, taking checking from $3,400 to $2,560.</p>
+    </div>
+    <figure>
+      <a href="resolved_board/board-ticket-101.png"><img src="resolved_board/board-ticket-101.png" alt="Campus Customs board with ticket CC-101 selected: resolved stamp, four of five agents called, hand-offs map, activity log ending with the human approval of invoice 501, cash gauge at $2,560." loading="lazy"></a>
+      <figcaption>Run 525fce39b9e9 · 3 hand-offs · 30,458 tokens. The Approvals panel shows invoice 501 approved, and the activity log ends with the human approval line.</figcaption>
+    </figure>
+  </section>
+
+  <section id="t102" aria-labelledby="h102">
+    <header><h2 id="h102"><span>CC-102</span>Rent due</h2><span class="stamp">RESOLVED</span></header>
+    <div class="facts">
+      <p><b>Agents</b>The Boss called Facilities first and alone, then Accounting. Inventory and Customer Service were not called.</p>
+      <p><b>Outcome</b>The notice matches lease 1: $2,400 due 2026-09-02, unpaid. The Boss said not to pay until a human confirms the sender.</p>
+      <p><b>Cash</b><span class="cash-down">−$2,400.00</span>: rent to Elm City Properties was approved on the board by John Doe, taking checking from $2,560 to $160.</p>
+    </div>
+    <figure>
+      <a href="resolved_board/board-ticket-102.png"><img src="resolved_board/board-ticket-102.png" alt="Campus Customs board with ticket CC-102 selected: Boss, Facilities and Accounting done, Inventory and Customer Service not called, rent approval of $2,400 still open with cash after $160." loading="lazy"></a>
+      <figcaption>Run fbafddb28901 · 2 hand-offs · 24,063 tokens. The Approvals panel shows the rent approved, and the activity log ends with the human approval line.</figcaption>
+    </figure>
+  </section>
+
+  <section id="t103" aria-labelledby="h103">
+    <header><h2 id="h103"><span>CC-103</span>Bulk hoodie discount</h2><span class="stamp">RESOLVED</span></header>
+    <div class="facts">
+      <p><b>Agents</b>The Boss called Inventory and Accounting together, then Customer Service. Facilities was not called.</p>
+      <p><b>Outcome</b>8 of 20 size M hoodies are in stock (12 short). The list quote is $1,160 and no discount was invented. The restock and any discount are a manager's call.</p>
+      <p><b>Cash</b><span class="cash-same">$0.00</span>: the $264 restock was held, so checking stays at $160. With only $160 left, the desk would now refuse it.</p>
+    </div>
+    <figure>
+      <a href="resolved_board/board-ticket-103.png"><img src="resolved_board/board-ticket-103.png" alt="Campus Customs board with ticket CC-103 selected: four agents done, Facilities not called, Customer Service draft to Yale AI Club, restock option of 12 hoodies for $264 still open." loading="lazy"></a>
+      <figcaption>Run e9cc9090460d · 3 hand-offs · 26,282 tokens. The restock option (12 × $22 = $264) is still open. It was held, not approved.</figcaption>
+    </figure>
+  </section>
+
+  <footer>Screenshots: <code>output/resolved_board/board-ticket-101.png</code>, <code>-102.png</code>, <code>-103.png</code>. Details per ticket are in <code>output/resolved_tickets.json</code>, and the itemized cash is on the Cash tab of <a href="desk_tickets.html#cash" style="color:var(--pink-soft)">desk_tickets.html</a>.</footer>
+</div>
+</body>
+</html>

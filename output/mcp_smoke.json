@@ -1,0 +1,72 @@
+{
+  "vibe_coder": "Claude Code",
+  "mcp_server": "campus-customs",
+  "connection_config": ".mcp.json",
+  "database": "data/campus_customs_new.db",
+  "tested_at": "2026-11-04T19:21:29-05:00",
+  "user_prompt": "test each of your three MCP tools. Save the evidence in output/mcp_smoke.json. For every tool include: the prompt you asked the vibe coder, the tool name, the tool output (must match values in data/campus_customs_new.db)",
+  "tests": [
+    {
+      "ticket": 101,
+      "prompt": "test each of your three MCP tools (Claude Code chose this call for ticket 101: check inventory for SKU CC-TEE-WHITE, size S)",
+      "tool": "mcp__campus-customs__check_inventory",
+      "arguments": { "sku": "CC-TEE-WHITE", "size": "S" },
+      "output": {
+        "found": true,
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty": 0,
+        "location": "Aisle B",
+        "in_stock": false,
+        "other_sizes": [
+          { "size": "L", "qty": 3 },
+          { "size": "M", "qty": 5 },
+          { "size": "XL", "qty": 2 }
+        ]
+      },
+      "db_check": {
+        "query": "SELECT sku, name, size, qty, location FROM inventory WHERE sku='CC-TEE-WHITE' AND size='S'; SELECT size, qty FROM inventory WHERE sku='CC-TEE-WHITE' AND size<>'S'",
+        "db_values": "('CC-TEE-WHITE', 'Classic Bulldog Tee', 'S', 0, 'Aisle B'); other sizes L 3, M 5, XL 2",
+        "matches": true
+      }
+    },
+    {
+      "ticket": 102,
+      "prompt": "test each of your three MCP tools (Claude Code chose this call for ticket 102: get lease 1)",
+      "tool": "mcp__campus-customs__get_lease",
+      "arguments": { "lease_id": 1 },
+      "output": {
+        "found": true,
+        "id": 1,
+        "space_name": "Chapel Street shop",
+        "landlord": "Elm City Properties",
+        "monthly_rent": 2400,
+        "next_due": "2026-09-02",
+        "notes": null
+      },
+      "db_check": {
+        "query": "SELECT * FROM leases WHERE id=1",
+        "db_values": "(1, 'Chapel Street shop', 'Elm City Properties', 2400.0, '2026-09-02', None)",
+        "matches": true
+      }
+    },
+    {
+      "ticket": 103,
+      "prompt": "test each of your three MCP tools (Claude Code chose this call for ticket 103: get pricing for SKU CC-HOOD-NAVY)",
+      "tool": "mcp__campus-customs__get_pricing",
+      "arguments": { "sku": "CC-HOOD-NAVY" },
+      "output": {
+        "found": true,
+        "sku": "CC-HOOD-NAVY",
+        "unit_cost": 22,
+        "list_price": 58
+      },
+      "db_check": {
+        "query": "SELECT * FROM pricing WHERE sku='CC-HOOD-NAVY'",
+        "db_values": "('CC-HOOD-NAVY', 22.0, 58.0)",
+        "matches": true
+      }
+    }
+  ]
+}

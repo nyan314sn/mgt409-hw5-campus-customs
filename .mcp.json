@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "campus-customs": {
+      "type": "stdio",
+      "command": "C:\\Users\\Pi\\miniconda3\\python.exe",
+      "args": [
+        "C:\\Users\\Pi\\OneDrive - Yale University\\Yale - Class\\MGT 409 E1 (FA26) AI Foundations\\Homework\\hw5\\mcp_server\\server.py"
+      ],
+      "env": {}
+    }
+  }
+}

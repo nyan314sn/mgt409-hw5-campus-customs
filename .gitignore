@@ -1,0 +1,17 @@
+# Secrets: keep the real .env out of version control (.env.example is committed)
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+
+# Front end (rebuilt by npm install / npm run build)
+frontend/node_modules/
+frontend/dist/
+
+# Local tool and editor folders
+.claude/
+.vscode/
+*.log
